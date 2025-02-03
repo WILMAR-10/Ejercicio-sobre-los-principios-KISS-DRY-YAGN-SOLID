@@ -1,0 +1,1 @@
+# Ejercicio-sobre-los-principios-KISS-DRY-YAGN-SOLID
