@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class;
+using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.DRY;
+using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.SOLID;
+using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.YAGNI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +16,7 @@ namespace Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID
 {
     public partial class Form1 : Form
     {
-        private decimal CalcularSalario(decimal salario) => salario * 0.87m;
-
-        public interface INotificador { void Enviar(string mensaje); }
-        public class EmailNotificador : INotificador { public void Enviar(string mensaje) => MessageBox.Show($"Enviando Email: {mensaje}"); }
-        public class SMSNotificador : INotificador { public void Enviar(string mensaje) => MessageBox.Show($"Enviando SMS: {mensaje}"); }
-
+        private Inventario inventario = new Inventario();
         public Form1()
         {
             InitializeComponent();
@@ -28,16 +27,29 @@ namespace Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID
         private void buttonCalcular1_Click(object sender, EventArgs e)
         {
             // KISS: Cálculo del total con propina
-            var precios = textBoxPrecios.Text.Split(',').Select(decimal.Parse).ToList();
-            decimal total = precios.Sum() * 1.1m;
+            bool propinaPersonalizada = checkBoxPropinaPersonalizada.Checked;
+            decimal propinaValor = propinaPersonalizada ? decimal.Parse(textBoxPropina.Text) : 0;
+
+            decimal total = KISS.CalcularTotal(textBoxPrecios.Text, propinaPersonalizada, propinaValor);
             labelResultado1.Text = $"Total a pagar: {total}";
         }
 
         private void buttonCalcular2_Click(object sender, EventArgs e)
         {
             // DRY: Cálculo de salario
-            decimal salario = decimal.Parse(textBoxSalario.Text);
-            labelResultado2.Text = $"Salario neto: {CalcularSalario(salario)}";
+            Empleado empleado;
+
+            if (radioTiempoCompleto.Checked)
+            {
+                empleado = new EmpleadoTiempoCompleto(decimal.Parse(textBoxSalario.Text));
+            }
+            else
+            {
+                empleado = new EmpleadoTiempoParcial(decimal.Parse(textBoxSueldoHora.Text), int.Parse(textBoxHoras.Text));
+            }
+
+            labelResultado2.Text = $"Salario neto después de impuestos y bono: {empleado.CalcularSalario()}";
+
         }
 
         private void buttonAgregar_Click(object sender, EventArgs e)
@@ -45,21 +57,28 @@ namespace Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID
             // YAGNI: Gestión básica de productos
             if (!string.IsNullOrWhiteSpace(textBoxNombre.Text) && !string.IsNullOrWhiteSpace(textBoxPrecio.Text))
             {
-                dataGridViewProductos.Rows.Add(textBoxNombre.Text, textBoxPrecio.Text);
-                textBoxNombre.Clear();
-                textBoxPrecio.Clear();
+                inventario.AgregarProducto(textBoxNombre.Text, decimal.Parse(textBoxPrecio.Text));
+                ActualizarListaProductos();
             }
         }
 
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             // YAGNI: Eliminación de productos
-            foreach (DataGridViewRow row in dataGridViewProductos.SelectedRows)
+            if (!string.IsNullOrWhiteSpace(textBoxNombre.Text))
             {
-                dataGridViewProductos.Rows.Remove(row);
+                inventario.EliminarProducto(textBoxNombre.Text);
+                ActualizarListaProductos();
             }
-            textBoxNombre.Clear();
-            textBoxPrecio.Clear();
+        }
+
+        private void ActualizarListaProductos()
+        {
+            dataGridViewProductos.Rows.Clear();
+            foreach (var producto in inventario.ObtenerProductos())
+            {
+                dataGridViewProductos.Rows.Add(producto.Nombre, producto.Precio);
+            }
         }
 
         private void buttonEnviar_Click(object sender, EventArgs e)
@@ -74,7 +93,14 @@ namespace Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID
             {
                 notificador = new SMSNotificador();
             }
-            notificador.Enviar(textBoxMensaje.Text);
+
+            string mensaje = textBoxMensaje.Text;
+            notificador.Enviar(mensaje);
+
+            // Registrar el mensaje en los logs
+            Logger logger = new Logger();
+            logger.Registrar(mensaje);
+
             labelResultado3.Text = "Notificación enviada.";
         }
 

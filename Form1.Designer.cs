@@ -38,15 +38,18 @@
             this.buttonEnviar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.textBoxPrecio = new System.Windows.Forms.TextBox();
+            this.buttonEliminar = new System.Windows.Forms.Button();
             this.buttonAgregar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelResultado2 = new System.Windows.Forms.Label();
             this.textBoxSalario = new System.Windows.Forms.TextBox();
@@ -54,21 +57,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelResultado1 = new System.Windows.Forms.Label();
             this.textBoxPrecios = new System.Windows.Forms.TextBox();
             this.buttonCalcular1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonEliminar = new System.Windows.Forms.Button();
-            this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxPropina = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBoxPropinaPersonalizada = new System.Windows.Forms.CheckBox();
+            this.radioTiempoCompleto = new System.Windows.Forms.CheckBox();
+            this.textBoxSueldoHora = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBoxHoras = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -184,6 +192,14 @@
             this.panel3.Size = new System.Drawing.Size(194, 444);
             this.panel3.TabIndex = 3;
             // 
+            // dataGridViewProductos
+            // 
+            this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProductos.Location = new System.Drawing.Point(7, 272);
+            this.dataGridViewProductos.Name = "dataGridViewProductos";
+            this.dataGridViewProductos.Size = new System.Drawing.Size(183, 163);
+            this.dataGridViewProductos.TabIndex = 8;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -225,6 +241,16 @@
             this.textBoxPrecio.Size = new System.Drawing.Size(146, 20);
             this.textBoxPrecio.TabIndex = 5;
             // 
+            // buttonEliminar
+            // 
+            this.buttonEliminar.Location = new System.Drawing.Point(60, 240);
+            this.buttonEliminar.Name = "buttonEliminar";
+            this.buttonEliminar.Size = new System.Drawing.Size(75, 23);
+            this.buttonEliminar.TabIndex = 3;
+            this.buttonEliminar.Text = "Eliminar Producto";
+            this.buttonEliminar.UseVisualStyleBackColor = true;
+            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
+            // 
             // buttonAgregar
             // 
             this.buttonAgregar.Location = new System.Drawing.Point(60, 211);
@@ -247,10 +273,15 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.radioTiempoCompleto);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.labelResultado2);
+            this.panel2.Controls.Add(this.textBoxHoras);
+            this.panel2.Controls.Add(this.textBoxSueldoHora);
             this.panel2.Controls.Add(this.textBoxSalario);
             this.panel2.Controls.Add(this.buttonCalcular2);
             this.panel2.Controls.Add(this.label2);
@@ -263,11 +294,19 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 141);
+            this.label9.Location = new System.Drawing.Point(25, 157);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.Size = new System.Drawing.Size(119, 13);
             this.label9.TabIndex = 7;
-            this.label9.Text = "Salario";
+            this.label9.Text = "Salario tiempo completo";
+            // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(21, 78);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(141, 49);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Se calculará el salario neto aplicando un 18% de impuestos y un 5% de bono";
             // 
             // label6
             // 
@@ -289,14 +328,14 @@
             // 
             // textBoxSalario
             // 
-            this.textBoxSalario.Location = new System.Drawing.Point(24, 157);
+            this.textBoxSalario.Location = new System.Drawing.Point(28, 173);
             this.textBoxSalario.Name = "textBoxSalario";
             this.textBoxSalario.Size = new System.Drawing.Size(146, 20);
             this.textBoxSalario.TabIndex = 5;
             // 
             // buttonCalcular2
             // 
-            this.buttonCalcular2.Location = new System.Drawing.Point(60, 211);
+            this.buttonCalcular2.Location = new System.Drawing.Point(57, 240);
             this.buttonCalcular2.Name = "buttonCalcular2";
             this.buttonCalcular2.Size = new System.Drawing.Size(75, 23);
             this.buttonCalcular2.TabIndex = 3;
@@ -316,9 +355,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.checkBoxPropinaPersonalizada);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.textBoxPropina);
             this.panel1.Controls.Add(this.labelResultado1);
             this.panel1.Controls.Add(this.textBoxPrecios);
             this.panel1.Controls.Add(this.buttonCalcular1);
@@ -337,6 +379,14 @@
             this.label8.Size = new System.Drawing.Size(36, 13);
             this.label8.TabIndex = 7;
             this.label8.Text = "Presio";
+            // 
+            // label15
+            // 
+            this.label15.Location = new System.Drawing.Point(21, 78);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 49);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "Calcula el total de los precios ingresados con una propina del 10%";
             // 
             // label5
             // 
@@ -365,7 +415,7 @@
             // 
             // buttonCalcular1
             // 
-            this.buttonCalcular1.Location = new System.Drawing.Point(60, 211);
+            this.buttonCalcular1.Location = new System.Drawing.Point(57, 240);
             this.buttonCalcular1.Name = "buttonCalcular1";
             this.buttonCalcular1.Size = new System.Drawing.Size(75, 23);
             this.buttonCalcular1.TabIndex = 3;
@@ -383,39 +433,72 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "KISS";
             // 
-            // buttonEliminar
+            // textBoxPropina
             // 
-            this.buttonEliminar.Location = new System.Drawing.Point(60, 240);
-            this.buttonEliminar.Name = "buttonEliminar";
-            this.buttonEliminar.Size = new System.Drawing.Size(75, 23);
-            this.buttonEliminar.TabIndex = 3;
-            this.buttonEliminar.Text = "Eliminar Producto";
-            this.buttonEliminar.UseVisualStyleBackColor = true;
-            this.buttonEliminar.Click += new System.EventHandler(this.buttonEliminar_Click);
+            this.textBoxPropina.Location = new System.Drawing.Point(24, 196);
+            this.textBoxPropina.Name = "textBoxPropina";
+            this.textBoxPropina.Size = new System.Drawing.Size(125, 20);
+            this.textBoxPropina.TabIndex = 5;
             // 
-            // dataGridViewProductos
+            // label16
             // 
-            this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProductos.Location = new System.Drawing.Point(7, 272);
-            this.dataGridViewProductos.Name = "dataGridViewProductos";
-            this.dataGridViewProductos.Size = new System.Drawing.Size(183, 163);
-            this.dataGridViewProductos.TabIndex = 8;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(21, 180);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(111, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Propina personalizada";
             // 
-            // label14
+            // checkBoxPropinaPersonalizada
             // 
-            this.label14.Location = new System.Drawing.Point(21, 78);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(141, 49);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "Se calculará el salario neto aplicando un 18% de impuestos y un 5% de bono";
+            this.checkBoxPropinaPersonalizada.AutoSize = true;
+            this.checkBoxPropinaPersonalizada.Location = new System.Drawing.Point(155, 199);
+            this.checkBoxPropinaPersonalizada.Name = "checkBoxPropinaPersonalizada";
+            this.checkBoxPropinaPersonalizada.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxPropinaPersonalizada.TabIndex = 8;
+            this.checkBoxPropinaPersonalizada.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // radioTiempoCompleto
             // 
-            this.label15.Location = new System.Drawing.Point(21, 78);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(141, 49);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "Calcula el total de los precios ingresados con una propina del 10%";
+            this.radioTiempoCompleto.AutoSize = true;
+            this.radioTiempoCompleto.Location = new System.Drawing.Point(36, 137);
+            this.radioTiempoCompleto.Name = "radioTiempoCompleto";
+            this.radioTiempoCompleto.Size = new System.Drawing.Size(108, 17);
+            this.radioTiempoCompleto.TabIndex = 8;
+            this.radioTiempoCompleto.Text = "Tiempo Completo";
+            this.radioTiempoCompleto.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSueldoHora
+            // 
+            this.textBoxSueldoHora.Location = new System.Drawing.Point(28, 212);
+            this.textBoxSueldoHora.Name = "textBoxSueldoHora";
+            this.textBoxSueldoHora.Size = new System.Drawing.Size(104, 20);
+            this.textBoxSueldoHora.TabIndex = 5;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(25, 196);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(107, 13);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "Salario tiempo parcial";
+            // 
+            // textBoxHoras
+            // 
+            this.textBoxHoras.Location = new System.Drawing.Point(138, 212);
+            this.textBoxHoras.Name = "textBoxHoras";
+            this.textBoxHoras.Size = new System.Drawing.Size(36, 20);
+            this.textBoxHoras.TabIndex = 5;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(139, 196);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 13);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Horas";
             // 
             // Form1
             // 
@@ -432,11 +515,11 @@
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -478,6 +561,14 @@
         private System.Windows.Forms.Button buttonEliminar;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox checkBoxPropinaPersonalizada;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBoxPropina;
+        private System.Windows.Forms.CheckBox radioTiempoCompleto;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBoxSueldoHora;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBoxHoras;
     }
 }
 
