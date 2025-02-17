@@ -3,13 +3,6 @@ using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.DRY;
 using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.SOLID;
 using Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID.Class.YAGNI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Ejercicio_sobre_los_principios_KISS_DRY_YAGN_SOLID
